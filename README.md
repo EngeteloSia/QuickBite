@@ -21,7 +21,7 @@ Ensure the following tools are installed on your system:
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
--.[Expo-Go]
+- [Expo-Go]
 
 ---
 
