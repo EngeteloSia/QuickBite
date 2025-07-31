@@ -32,6 +32,5 @@ Install all dependencies via:
 ```bash
 yarn install
 
-```bash
 yarn start
 
