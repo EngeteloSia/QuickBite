@@ -12,8 +12,8 @@ const Stack = createStackNavigator();
 export default function AppNavigator() {
   return (
     <Stack.Navigator>
-       <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Regisytation" component={RegistrationScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Regisytation" component={RegistrationScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Menu" component={MenuScreen} />
       <Stack.Screen name="Checkout" component={CheckoutScreen} />
