@@ -1,4 +1,4 @@
-# 🍔 QuickBite – Pre-order Cafeteria App
+ing# 🍔 QuickBite – Pre-order Cafeteria App
 
 QuickBite is a React Native application built using **Expo**, **Firebase**, and **Stripe** to allow users to pre-order food from a cafeteria. Admins can mark unavailable items, and users can securely pay using Stripe.
 
@@ -31,6 +31,8 @@ Install all dependencies via:
 
 ```bash
 yarn install
+
+##To start app after installation
 
 yarn start
 
