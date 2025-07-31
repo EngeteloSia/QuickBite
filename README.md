@@ -21,8 +21,7 @@ Ensure the following tools are installed on your system:
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
-- A [Firebase Project](https://console.firebase.google.com/)
-- A [Stripe Account](https://dashboard.stripe.com/register)
+-.[Expo-Go]
 
 ---
 
