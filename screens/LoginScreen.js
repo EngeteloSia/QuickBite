@@ -1,55 +1,72 @@
-//Sample login screen
-// src/screens/LoginScreen.js
-import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase/firebase'; // Adjust the import path as necessary
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email.trim(), password);
-      Alert.alert("Success", "Logged in successfully!");
-      // Navigate to Home or Dashboard
-      // navigation.navigate('Home');
-    } catch (error) {
-      Alert.alert("Login failed", error.message);
+  const handleLogin = () => {
+    if (!email.trim() || !password.trim()) {
+      alert("email and password cant be empty");
+      return;
     }
+    navigation.navigate("Main");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Sign in</Text>
+        <Text style={styles.subtitle}>Welcome back</Text>
+        <Image
+          source={require("../assets/images/user-icon.png")}
+          style={styles.icon}
+        />
+      </View>
 
-      <TextInput
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        mode="outlined"
-        style={styles.input}
-        autoCapitalize="none"
+      <View style={styles.formContainer}>
+        <Text style={styles.label}>Email</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your email"
+          placeholderTextColor="#888"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your password"
+          placeholderTextColor="#888"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+
+        <TouchableOpacity style={styles.signInButton} onPress={handleLogin}>
+          <Text style={styles.signInText}>Sign in</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.orText}>or</Text>
+
+        <TouchableOpacity onPress={() => alert("Forgot password pressed")}>
+          <Text style={styles.forgotPassword}>Forgot password</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.registerButton}
+          onPress={() => navigation.navigate("Register")}
+        >
+          <Text style={styles.registerText}>Register</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Image
+        source={require("../assets/images/fork-knife.png")}
+        style={styles.bottomImage}
       />
-
-      <TextInput
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-        mode="outlined"
-        style={styles.input}
-        secureTextEntry
-      />
-
-      <Button mode="contained" onPress={handleLogin} style={styles.button}>
-        Login
-      </Button>
-
-      <Button onPress={() => navigation.navigate('Register')}>
-        Don't have an account? Register
-      </Button>
     </View>
   );
 }
@@ -57,19 +74,91 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: "#fff",
     padding: 20,
-    backgroundColor: '#fff'
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  header: {
+    alignItems: "center",
+    marginTop: 50,
   },
   title: {
     fontSize: 26,
-    marginBottom: 30,
-    textAlign: 'center'
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "#1b1919ff",
+    marginBottom: 15,
+  },
+  icon: {
+    width: 80,
+    height: 80,
+    marginBottom: 20,
+  },
+  formContainer: {
+    flex: 1,
+    justifyContent: "center",
+    width: "100%",
+  },
+  label: {
+    fontSize: 14,
+    marginBottom: 5,
+    color: "#000",
   },
   input: {
-    marginBottom: 15
+    borderWidth: 1,
+    borderColor: "#aaa5a5ff",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+    width: "100%",
   },
-  button: {
-    marginTop: 10
-  }
+  signInButton: {
+    backgroundColor: "#d4a056",
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    marginTop: 5,
+    alignSelf: "center",
+  },
+  signInText: {
+    color: "#000",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  orText: {
+    marginTop: 15,
+    fontSize: 14,
+    color: "#191212ff",
+    textAlign: "center",
+  },
+  forgotPassword: {
+    fontSize: 14,
+    color: "#555",
+    textDecorationLine: "underline",
+    marginVertical: 10,
+    textAlign: "center",
+  },
+  registerButton: {
+    backgroundColor: "#d4a056",
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    marginTop: 5,
+    alignSelf: "center",
+  },
+  registerText: {
+    color: "#000",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  bottomImage: {
+    width: 50,
+    height: 50,
+    resizeMode: "contain",
+    marginBottom: 20,
+  },
 });

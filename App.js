@@ -2,20 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import RegistrationScreen from './screens/RegistrationScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import OrdersScreen from './screens/OrdersScreen';
-import { useNavigation } from '@react-navigation/native';
 
-//import SettingsScreen from './screens/SettingsScreen';
+// Screens
+import RegistrationScreen from './screens/RegistrationScreen';
+import OrdersScreen from './screens/OrdersScreen';
+import LoginScreen from './screens/LoginScreen'; 
 
 const Tab = createBottomTabNavigator();
-
 const Stack = createNativeStackNavigator();
 
-
-// Home screen content here
-//Sample home screen
+// Sample home screen
 function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -24,6 +21,7 @@ function HomeScreen() {
     </View>
   );
 }
+
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -35,7 +33,6 @@ function MainTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Orders" component={OrdersScreen} />
-    
     </Tab.Navigator>
   );
 }
@@ -43,7 +40,12 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Register"
           component={RegistrationScreen}
@@ -58,9 +60,7 @@ export default function App() {
     </NavigationContainer>
   );
 }
-        //We can add the other screens here for now. Just copy paste the component☝️
-        
-// we can style in-file no need for external CSS
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
